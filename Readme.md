@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Екатерина](https://up.htmlacademy.ru/ecmascript/7/user/921993).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий](https://htmlacademy.ru/profile/id591417).
 
 ---
 
