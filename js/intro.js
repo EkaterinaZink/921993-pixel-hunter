@@ -1,5 +1,5 @@
 import {createDomElement, renderScreen} from './utilits.js';
-import {greetingsScreen} from './greeting.js';
+import {greetingsScreen} from './greetings.js';
 
 const markUp = `  <section class="intro">
     <button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>

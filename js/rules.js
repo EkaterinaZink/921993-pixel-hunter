@@ -1,6 +1,6 @@
 import {createDomElement, renderScreen} from './utilits.js';
 import {introScreen} from './intro.js';
-import {gameScreenOne} from './game1.js';
+import {gameScreenOne} from './game-1.js';
 
 const markUp = `  <header class="header">
     <button class="back">
@@ -52,4 +52,4 @@ rulesForm.addEventListener(`submit`, (e) => {
   e.preventDefault();
   renderScreen(gameScreenOne);
 });
-export {screen as screenRules};
+export {screen as rulesScreen};
