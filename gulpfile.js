@@ -13,6 +13,22 @@ const svgstore = require(`gulp-svgstore`);
 const rollup = require(`gulp-better-rollup`);
 const sourcemaps = require(`gulp-sourcemaps`);
 
+const mocha = require(`gulp-mocha`); // Добавим установленный gulp-mocha плагин
+const commonjs = require(`rollup-plugin-commonjs`); // Добавим плагин для работы с `commonjs` модулями
+gulp.task(`test`, function () {
+  return gulp
+    .src([`js/**/*.test.js`])
+    .pipe(rollup({
+      plugins: [
+        commonjs()
+      ]
+    }, `cjs`))
+    .pipe(gulp.dest(`build/test`))
+    .pipe(mocha({
+      reporter: `spec`
+    }));
+});
+
 gulp.task(`style`, () => {
   return gulp.src(`sass/style.scss`).
     pipe(plumber()).
@@ -38,11 +54,11 @@ gulp.task(`style`, () => {
 
 gulp.task(`sprite`, () => {
   return gulp.src(`img/sprite/*.svg`)
-  .pipe(svgstore({
-    inlineSvg: true
-  }))
-  .pipe(rename(`sprite.svg`))
-  .pipe(gulp.dest(`build/img`));
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
+    .pipe(rename(`sprite.svg`))
+    .pipe(gulp.dest(`build/img`));
 });
 
 gulp.task(`scripts`, () => {
@@ -112,5 +128,3 @@ gulp.task(`build`, [`assemble`], () => {
   gulp.start(`imagemin`);
 });
 
-gulp.task(`test`, () => {
-});
