@@ -21,6 +21,9 @@ gulp.task(`test`, function () {
     .pipe(rollup({
       plugins: [
         commonjs()
+      ],
+      external: [
+        `chai`
       ]
     }, `cjs`))
     .pipe(gulp.dest(`build/test`))
