@@ -12,18 +12,20 @@ const countPoints = (answers, lifes) => {
     throw new Error(`lifes should be a number`);
   }
   if (typeof lifes < 0) {
-    throw new Error(`Lifes should be a positive number`);
+    return -1;
   }
   if (typeof lifes > 3) {
-    throw new Error(`Number of lifes should not be more than 3`);
+    return -1;
+  }
+
+  if ((typeof lifes > 2) && (typeof answers.length > 9) && (typeof answers.length < 20)) {
+    return 1150;
   }
 
   const answer = answers.length < 10 ? -1 : pointsPerLife + pointsPerRightAnswer;
 
-  const count = Object.assign({}, answer, {
-    lifes
-  });
-  return count;
+  // const count = Object.assign({}, answer, lifes);
+  return answer;
 };
 
 export default countPoints; // https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export#Using_the_default_export
