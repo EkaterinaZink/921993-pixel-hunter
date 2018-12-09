@@ -1,12 +1,24 @@
-const RIGHT_ANSWER = 100;
-const LIFES = 50;
-const FAST = 50;
-const SLOW = 50;
+const Points = {
+  RIGHT_ANSWER: 100,
+  LIFES: 50,
+  FAST: 50,
+  SLOW: 50,
+};
 
+const AnswerTime = {
+  MIN: 10,
+  NORM: 20,
+  MAX: 30
+};
+
+
+const getRightAnswer = (answers) => {
+  return answers.filter((answer) => answer.result === 1);
+};
 
 const countPoints = (answers, lifes) => {
-  const pointsPerLife = lifes * LIFES;
-  const pointsPerRightAnswer = answers.length * RIGHT_ANSWER;
+  const pointsPerLife = lifes * Points.LIFES;
+  const pointsPerRightAnswer = answers.length * Points.RIGHT_ANSWER;
   let total = 0;
 
   if ((lifes < 0) || (lifes > 3) || (typeof lifes !== `number`)) {
@@ -16,24 +28,30 @@ const countPoints = (answers, lifes) => {
   } else {
 
     answers.forEach((answer) => {
-
-      // total += RIGHT_ANSWER;
-      if (answer <= 10) {
-        total += FAST;
+      if (answer <= AnswerTime.MIN) {
+        total += Points.FAST;
       }
-      if (answer >= 20) {
-        total -= SLOW;
+      if (answer >= AnswerTime.NORM) {
+        total -= Points.SLOW;
       }
-      // return total;
     });
-
     total += pointsPerLife + pointsPerRightAnswer;
 
-    // const count = Object.assign({}, answer, lifes);
+    let rightAnswers = getRightAnswer(answers);
+    const fastAnswers = rightAnswers.filter(
+        (answer) => answer.time <= AnswerTime.MIN
+    );
+    const slowAnswers = rightAnswers.filter(
+        (answer) => answer.time >= AnswerTime.NORM
+    );
 
-    return (total);
+    return {
+      right: rightAnswers.length,
+      fast: fastAnswers.length,
+      slow: slowAnswers.length,
+      total
+    };
   }
 };
 
-
-export default countPoints; // https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export#Using_the_default_export
+export default countPoints;

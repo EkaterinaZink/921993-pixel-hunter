@@ -15,4 +15,4 @@ const changeLevel = (game, level) => {
   return newGame;
 };
 
-export default changeLevel; // https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export#Using_the_default_export
+export default changeLevel;
