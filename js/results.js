@@ -1,5 +1,5 @@
 import {createDomElement} from './utilits.js';
-import {renderHeader, HEADER_1} from './header.js';
+import {renderHeader, HEADER_1} from './header';
 import {statsScreen} from './stats.js';
 import {countPoints} from "./data/count-points";
 import {Points} from "./game-data";

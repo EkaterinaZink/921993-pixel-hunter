@@ -1,11 +1,11 @@
-import {createDomElement, renderScreen} from './utilits.js';
+import {createDomElement, renderScreen} from './utilits';
 import {renderResults} from './results';
-import {AnswerTime, SCREEN_COUNT, gameList} from './game-data.js';
-import {renderHeader, HEADER_1} from './header.js';
+import {AnswerTime, SCREEN_COUNT, gameList} from './game-data';
+import {renderHeader, HEADER_1} from './header';
 import {changeLevel} from './data/change-level';
 import {manageLifes} from './data/manage-lifes';
 import {countPoints} from './data/count-points';
-import {statsScreen} from './stats.js';
+import {statsScreen} from './stats';
 
 
 const INITIAL_STATE = Object.freeze({

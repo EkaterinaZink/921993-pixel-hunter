@@ -1,5 +1,5 @@
 
-export default function changeLevel(game, level) {
+export function changeLevel(game, level) {
   if (level < 0) {
     throw new Error(`Level should not be negative value`);
   }

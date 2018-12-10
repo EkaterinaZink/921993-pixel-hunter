@@ -1,5 +1,5 @@
 import {createDomElement, renderScreen} from './utilits.js';
-import {greetingsScreen} from './greetings.js';
+import {greetingsScreen} from './greetings';
 
 const HEADER_1 = 1;
 const HEADER_2 = 0;
