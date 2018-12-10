@@ -16,7 +16,7 @@ const getRightAnswer = (answers) => {
   return answers.filter((answer) => answer.result === 1);
 };
 
-const countPoints = (answers, lifes) => {
+export default function countPoints(answers, lifes) {
   const pointsPerLife = lifes * Points.LIFES;
   const pointsPerRightAnswer = answers.length * Points.RIGHT_ANSWER;
   let total = 0;
@@ -52,6 +52,4 @@ const countPoints = (answers, lifes) => {
       total
     };
   }
-};
-
-export default countPoints;
+}

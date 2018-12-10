@@ -1,10 +1,9 @@
-const manageLifes = (lifesNumber) => {
+export default function manageLifes(lifesNumber) {
   if (typeof lifesNumber !== `number`) {
     throw new Error(`lifes should be a number`);
   }
+  let lifes = lifesNumber <= 0 ? lifesNumber : lifesNumber - 1;
 
-  return lifesNumber <= 0 ? lifesNumber : lifesNumber - 1;
-};
-
-export default manageLifes;
+  return lifes;
+}
 

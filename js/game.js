@@ -2,9 +2,9 @@ import {createDomElement, renderScreen} from './utilits.js';
 import {renderResults} from './results';
 import {AnswerTime, SCREEN_COUNT, gameList} from './game-data.js';
 import {renderHeader, HEADER_1} from './header.js';
-import {changeLevel} from '../data/change-level.js';
-import {manageLifes} from '../data/manage-lifes.js';
-import {countPoints} from './count-points.js';
+import {changeLevel} from './data/change-level';
+import {manageLifes} from './data/manage-lifes';
+import {countPoints} from './data/count-points';
 import {statsScreen} from './stats.js';
 
 

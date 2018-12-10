@@ -1,6 +1,6 @@
 import {createDomElement} from './utilits.js';
 import {renderHeader, HEADER_2} from './header.js';
-import {startGame} from './start.js';
+import {startGame} from './game.js';
 
 const markUp = `<section class="rules">
     <h2 class="rules__title">Правила</h2>
