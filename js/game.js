@@ -7,7 +7,6 @@ import {manageLifes} from './data/manage-lifes';
 import {countPoints} from './data/count-points';
 import {statsScreen} from './stats';
 
-
 const INITIAL_STATE = Object.freeze({
   level: 0,
   lifes: 3,

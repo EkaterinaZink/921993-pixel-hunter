@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import manageLifes from './manage-lifes.js';
+import {manageLifes} from './manage-lifes.js';
 
 describe(`Check lifes  `, () => {
 

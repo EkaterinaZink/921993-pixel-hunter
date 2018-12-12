@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import countPoints from './count-points.js';
+import {countPoints} from './count-points';
 
 describe(`Check points calculation`, () => {
 
