@@ -1,9 +1,9 @@
 import {assert} from 'chai';
-import changeLevel from './change-level.js';
+import {changeLevel} from './change-level.js';
 
 const INITIAL_GAME = Object.freeze({
   level: 0,
-  lives: 2,
+  lifes: 2,
   time: 0
 });
 

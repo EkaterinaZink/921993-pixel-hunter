@@ -1,5 +1,5 @@
 
-const changeLevel = (game, level) => {
+export function changeLevel(game, level) {
   if (level < 0) {
     throw new Error(`Level should not be negative value`);
   }
@@ -13,6 +13,4 @@ const changeLevel = (game, level) => {
     level
   });
   return newGame;
-};
-
-export default changeLevel; // https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export#Using_the_default_export
+}
