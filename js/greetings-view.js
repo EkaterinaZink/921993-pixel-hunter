@@ -1,7 +1,11 @@
-import {createDomElement, renderScreen} from './utilits.js';
-import {rulesScreen} from './rules';
+import AbstractView from './abstractview';
 
-const markUp = `  <section class="greeting central--blur">
+export default class GreetingsView extends AbstractView {
+  constructor() {
+    super();
+  }
+  get template() {
+    return `  <section class="greeting central--blur">
     <img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">
     <div class="greeting__asterisk asterisk"><span class="visually-hidden">Я просто красивая звёздочка</span>*</div>
     <div class="greeting__challenge">
@@ -21,12 +25,18 @@ const markUp = `  <section class="greeting central--blur">
       </svg>
     </button>
   </section>`;
+  }
+  nextButton() { }
 
-const screen = createDomElement(markUp);
-const buttonToNextScreen = screen.querySelector(`.greeting__continue`);
-buttonToNextScreen.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  renderScreen(rulesScreen);
-});
+  bind(screen) {
+    screen
+      .querySelector(`.greeting__continue`)
+      .addEventListener(`click`, (e) => {
+        e.preventDefault();
+        this.nextButton();
+      });
 
-export {screen as greetingsScreen};
+  }
+}
+
+// переименовать render screen -> change screen ; createdom elment -> renderScreen
