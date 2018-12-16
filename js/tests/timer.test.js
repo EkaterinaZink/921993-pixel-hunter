@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import timer from './timer.js';
+import timer from '../data/timer.js';
 
 describe(`Check timer`, () => {
 

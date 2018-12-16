@@ -1,5 +1,5 @@
 import AbstractView from './abstractview.js';
-import resultsTemplate from './results-chart.js';
+import resultsTemplate from '../results-chart.js';
 
 export default class GameTwoView extends AbstractView {
   constructor(question, results, answersQuantity) {
@@ -13,7 +13,7 @@ export default class GameTwoView extends AbstractView {
     const resultsChart = resultsTemplate(this.results, this.answersQuantity);
 
     return `<section class="game">
-    <p class="game__task">${this.question.questionText}</p>
+    <p class="game__task">${this.question.description}</p>
     <form class="game__content">
     ${this.question.answers.map((answer, i) =>
     `<div class="game__option">

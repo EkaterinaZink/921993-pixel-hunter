@@ -8,7 +8,7 @@ const headerTemplate = (state) => `<header class="header">
         <use xlink:href="img/sprite.svg#logo-small"></use>
       </svg>
     </button>
-    < div class="game__timer" > ${state.time + 1}</div >
+    < div class="game__timer" > ${state.question + 1}</div >
     < div class="game__lives" >
     ${new Array(3 - state.lifes)
     .fill(`<img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">`)

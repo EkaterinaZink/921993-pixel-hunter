@@ -1,5 +1,5 @@
 import AbstractView from './abstractview.js';
-import resultsTemplate from './results-chart.js';
+import resultsTemplate from '../results-chart.js';
 
 export default class GameThreeView extends AbstractView {
   constructor(question, results, answersQuantity) {

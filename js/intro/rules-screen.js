@@ -1,5 +1,5 @@
-import {renderElement} from './utilits.js';
-import startGame from './view/game-start.js';
+import {renderElement} from '../utilits.js';
+import startGame from '../game-start.js';
 
 const markUp = `<header class="header">
 <button class="back">

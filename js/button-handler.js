@@ -1,4 +1,4 @@
-import introScreen from './intro-screen.js';
+import introScreen from './intro/intro-screen.js';
 import renderScreen from './render-screen.js';
 
 const buttonHandler = () => {

@@ -1,6 +1,6 @@
-import {renderElement} from './utilits.js';
-import renderScreen from './render-screen.js';
-import greetingsScreen from './greetings-screen.js';
+import {renderElement} from '../utilits.js';
+import renderScreen from '../render-screen.js';
+import greetingsScreen from '../intro/greetings-screen.js';
 
 const markUp = `<section class="intro">
     <button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>
@@ -8,7 +8,7 @@ const markUp = `<section class="intro">
   </section>`;
 
 const introScreen = renderElement(markUp);
-const nextScreenButton = screen.querySelector(`.intro__asterisk`);
+const nextScreenButton = introScreen.querySelector(`.intro__asterisk`);
 
 nextScreenButton.addEventListener(`click`, () => renderScreen(greetingsScreen));
 

@@ -1,10 +1,10 @@
-const INITIAL_STATE = Object.freeze({
+export const INITIAL_STATE = Object.freeze({
   question: 0,
   lifes: 3,
   time: 30
 });
 
-const AnswerTime = {
+export const AnswerTime = {
   MIN: 10,
   NORM: 20,
   MAX: 30
@@ -22,76 +22,143 @@ const imagesList = {
     `http://i.imgur.com/DKR1HtB.jpg`
   ]
 };
-
-const SCREEN_COUNT = 10;
+// imagesList.paintings[randomIndex(imagesList.paintings)],
+// imagesList.photos[randomIndex(imagesList.photos)]
 
 const randomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-const gameType = () => {
-  return [
-    {
-      description: `Угадай, фото или рисунок?`,
-      type: 1,
-      image: [
-        {
-          number: 1,
-          type: `paint`,
-          src: imagesList.paintings[randomIndex(imagesList.paintings)]
-        }
-      ]
-    },
-    {
-      description: `Угадайте для каждого изображения фото или рисунок?`,
-      type: 2,
-      image: [
-        {
-          number: 1,
-          type: `paint`,
-          src: imagesList.paintings[randomIndex(imagesList.paintings)]
-        },
-        {
-          number: 2,
-          type: `photo`,
-          src: imagesList.photos[randomIndex(imagesList.photos)]
-        }
-      ]
-    },
-    {
-      description: `Найдите рисунок среди изображений?`,
-      type: 3,
-      rightType: `paint`,
-      image: [
-        {
-          number: 1,
-          type: `photo`,
-          src: imagesList.photos[randomIndex(imagesList.photos)]
-        },
-        {
-          number: 2,
-          type: `photo`,
-          src: imagesList.photos[randomIndex(imagesList.photos)]
-        },
-        {
-          number: 3,
-          type: `paint`,
-          src: imagesList.paintings[randomIndex(imagesList.paintings)]
-        }
-      ]
+export const gameQuestions = [
+  {
+    type: `1-img`,
+    description: `Угадай, фото или рисунок?`,
+    answer: {
+      image: imagesList.photos[randomIndex(imagesList.photos)],
+      value: `photo`
     }
-  ];
-};
-
-const getGameScreens = () => {
-  const game = [];
-  for (let i = 0; i < SCREEN_COUNT; i++) {
-    const gameItem = gameType();
-    game.push(gameItem[randomIndex(gameItem)]);
+  },
+  {
+    type: `2-img`,
+    description: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      },
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      }
+    ]
+  },
+  {
+    type: `3-img`,
+    description: `Найдите рисунок среди изображений?`,
+    soughtFor: `paint`,
+    answers: [
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      },
+      {
+        image: imagesList.paintings[randomIndex(imagesList.paintings)],
+        value: `paint`
+      },
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      }
+    ]
+  },
+  {
+    type: `2-img`,
+    description: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [
+      {
+        image: imagesList.paintings[randomIndex(imagesList.paintings)],
+        value: `paint`
+      },
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      }
+    ]
+  },
+  {
+    type: `3-img`,
+    description: `Найдите рисунок среди изображений?`,
+    soughtFor: `paint`,
+    answers: [
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      },
+      {
+        image: imagesList.paintings[randomIndex(imagesList.paintings)],
+        value: `paint`
+      },
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      }
+    ]
+  },
+  {
+    type: `1-img`,
+    description: `Угадай, фото или рисунок?`,
+    answer: {
+      image: imagesList.photos[randomIndex(imagesList.photos)],
+      value: `photo`
+    }
+  },
+  {
+    type: `3-img`,
+    description: `Найдите рисунок среди изображений?`,
+    soughtFor: `paint`,
+    answers: [
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      },
+      {
+        image: imagesList.paintings[randomIndex(imagesList.paintings)],
+        value: `paint`
+      },
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      }
+    ]
+  },
+  {
+    type: `2-img`,
+    description: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [
+      {
+        image: imagesList.photos[randomIndex(imagesList.photos)],
+        value: `photo`
+      },
+      {
+        image: imagesList.paintings[randomIndex(imagesList.paintings)],
+        value: `paint`
+      }
+    ]
+  },
+  {
+    type: `1-img`,
+    description: `Угадай, фото или рисунок?`,
+    answer: {
+      image: imagesList.photos[randomIndex(imagesList.photos)],
+      value: `photo`
+    }
+  },
+  {
+    type: `1-img`,
+    description: `Угадай, фото или рисунок?`,
+    answer: {
+      image: imagesList.photos[randomIndex(imagesList.photos)],
+      value: `photo`
+    }
   }
-  return game;
-};
-
-const gameList = getGameScreens();
-export {INITIAL_STATE, AnswerTime, SCREEN_COUNT, gameList};
-
+];

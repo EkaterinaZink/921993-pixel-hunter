@@ -1,6 +1,6 @@
-import {renderElement} from './utilits.js';
-import renderScreen from './render-screen.js';
-import rulesScreen from './rules-screen.js';
+import {renderElement} from '../utilits.js';
+import renderScreen from '../render-screen.js';
+import rulesScreen from '../intro/rules-screen.js';
 
 const markUp = `  <section class="greeting central--blur">
     <img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">

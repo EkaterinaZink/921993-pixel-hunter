@@ -1,5 +1,5 @@
 import AbstractView from './abstractview.js';
-import resultsTemplate from './results-chart.js';
+import resultsTemplate from '../results-chart.js';
 
 export default class FailScreen extends AbstractView {
   constructor(results, answers) {

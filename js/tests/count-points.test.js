@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {countPoints} from './count-points';
+import {countPoints} from '../data/count-points';
 
 describe(`Check points calculation`, () => {
 

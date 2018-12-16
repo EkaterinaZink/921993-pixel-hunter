@@ -1,4 +1,4 @@
-import {gameList, INITIAL_STATE} from './game-data.js';
+import {gameQuestions, INITIAL_STATE} from './game-data.js';
 import buttonHandler from './button-handler.js';
 import headerTemplate from './header.js';
 import {renderElement} from './utilits.js';
@@ -6,19 +6,19 @@ import {changeQuestion} from './utilits.js';
 import {continueGame} from './utilits.js';
 import {reduceLifes} from './utilits.js';
 import renderScreen from './render-screen.js';
-import GameOneView from './game-1.js';
-import GameTwoView from './game-2.js';
-import GameThreeView from './game-3.js';
-import WinScreen from './results-win.js';
-import FailScreen from './results-fail.js';
+import GameOneView from './view/game-1.js';
+import GameTwoView from './view/game-2.js';
+import GameThreeView from './view/game-3.js';
+import WinScreen from './view/results-win.js';
+import FailScreen from './view/results-fail.js';
 
 const screenContainer = document.querySelector(`#main`);
 const results = [];
 
 const renderGameScreen = (state) => {
-  const answersList = gameList.length;
+  const answersList = gameQuestions.length;
   let currentAnswerNumber = parseInt(game.question, 10);
-  let gameType = gameList[state.question].questionType;
+  let gameType = gameQuestions[state.question].type;
   let questionView;
 
   const winScreen = new WinScreen(results, game.lifes, answersList);
@@ -51,15 +51,15 @@ const renderGameScreen = (state) => {
 
   switch (gameType) {
     case `1-img`:
-      questionView = new GameOneView(gameList[state.question], results, answersList);
+      questionView = new GameOneView(gameQuestions[state.question], results, answersList);
       break;
 
     case `2-img`:
-      questionView = new GameTwoView(gameList[state.question], results, answersList);
+      questionView = new GameTwoView(gameQuestions[state.question], results, answersList);
       break;
 
     case `3-img`:
-      questionView = new GameThreeView(gameList[state.question], results, answersList);
+      questionView = new GameThreeView(gameQuestions[state.question], results, answersList);
       break;
   }
   screenContainer.innerHTML = ``;
