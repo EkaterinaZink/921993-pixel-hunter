@@ -1,8 +1,8 @@
 import {gameQuestions, INITIAL_STATE} from './game-data.js';
 import buttonHandler from './button-handler.js';
-import headerTemplate from './header.js';
+import HeaderTemplate from './header.js';
 import {renderElement} from './utilits.js';
-import {changeQuestion} from '../utilits.js';
+import {changeQuestion} from './utilits.js';
 import {continueGame} from './utilits.js';
 import {reduceLifes} from './utilits.js';
 import renderScreen from './render-screen.js';
@@ -64,7 +64,7 @@ const renderGameScreen = (state) => {
   }
   screenContainer.innerHTML = ``;
   questionView.handleAnswer = (isRightAnswer) => handleAnswer(isRightAnswer);
-  screenContainer.appendChild(renderElement(headerTemplate(state)));
+  // screenContainer.appendChild(renderElement(new HeaderTemplate(state)));
   screenContainer.appendChild(questionView.element);
   buttonHandler();
 };

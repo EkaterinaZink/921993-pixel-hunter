@@ -14,7 +14,7 @@ export const changeQuestion = (game, question) => {
   if (question < 0) {
     throw new Error(`Question should not have negative value`);
   }
-  if (question !== `number`) {
+  if (typeof (question) !== `number`) {
     throw new Error(`Question should be a number`);
   }
   const newGame = Object.assign({}, game, {question});

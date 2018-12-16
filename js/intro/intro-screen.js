@@ -1,16 +1,22 @@
-import {renderElement} from '../utilits.js';
-import renderScreen from '../render-screen.js';
-import greetingsScreen from '../intro/greetings-screen.js';
+import Router from '../router.js';
+import AbstractView from '../view/abstractview.js';
 
-const markUp = `<section class="intro">
+export default class IntroScreen extends AbstractView {
+  constructor() {
+    super();
+  }
+
+  get template() {
+    return `<section class="intro">
     <button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
   </section>`;
+  }
 
-const introScreen = renderElement(markUp);
-const nextScreenButton = introScreen.querySelector(`.intro__asterisk`);
-
-nextScreenButton.addEventListener(`click`, () => renderScreen(greetingsScreen));
-
-export default introScreen;
-
+  bind() {
+    const nextScreenButton = this.element.querySelector(`.intro__asterisk`);
+    nextScreenButton.addEventListener(`click`, () => {
+      Router.showGreetings();
+    });
+  }
+}

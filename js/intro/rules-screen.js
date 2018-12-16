@@ -1,7 +1,14 @@
-import {renderElement} from '../utilits.js';
 import startGame from '../game-start.js';
+import Router from '../router.js';
+import AbstractView from '../view/abstractview.js';
 
-const markUp = `<header class="header">
+export default class RulesScreen extends AbstractView {
+  constructor() {
+    super();
+  }
+
+  get template() {
+    return `<header class="header">
 <button class="back">
   <span class="visually-hidden">Вернуться к началу</span>
   <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -27,19 +34,23 @@ const markUp = `<header class="header">
       <button class="rules__button  continue" type="submit" disabled>Go!</button>
     </form>
   </section>`;
+  }
 
-const rulesScreen = renderElement(markUp);
-const rulesInput = rulesScreen.querySelector(`.rules__input`);
-const rulesButton = rulesScreen.querySelector(`.rules__button`);
-const rulesForm = rulesScreen.querySelector(`.rules__form`);
+  bind() {
+    const rulesForm = this.element.querySelector(`.rules__form`);
+    const rulesInput = rulesForm.querySelector(`.rules__input`);
+    const rulesButton = rulesForm.querySelector(`.rules__button`);
+    const nextScreenButton = this.element.querySelector(`.back`);
 
-rulesForm.addEventListener(`input`, () => {
-  rulesButton.disabled = rulesInput.value.length > 0 ? false : true;
-});
+    rulesForm.addEventListener(`input`, () => {
+      rulesButton.disabled = rulesInput.value.length > 0 ? false : true;
+    });
 
-rulesForm.addEventListener(`submit`, (e) => {
-  e.preventDefault();
-  startGame();
-});
+    rulesForm.addEventListener(`submit`, (e) => {
+      e.preventDefault();
+      startGame();
+    });
 
-export default rulesScreen;
+    nextScreenButton.addEventListener(`click`, () => Router.showGreetings());
+  }
+}
