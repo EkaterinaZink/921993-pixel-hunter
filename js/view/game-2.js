@@ -36,7 +36,7 @@ export default class GameTwoView extends AbstractView {
   handleAnswer() { }
 
   bind() {
-    const formElement = this.element.querySelector(`game__content`);
+    const formElement = this.element.querySelector(`.game__content`);
     const questionsWrappers = Array.from(formElement.querySelectorAll(`.game__option`));
     const imagesToAnswer = questionsWrappers.length;
     let answersRightPartial = 0;

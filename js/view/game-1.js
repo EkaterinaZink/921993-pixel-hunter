@@ -34,7 +34,7 @@ export default class GameOneView extends AbstractView {
   handleAnswer() { }
 
   bind() {
-    const formElement = this.element.querySelector(`game__content`);
+    const formElement = this.element.querySelector(`.game__content`);
     const options = Array.from(formElement.querySelectorAll(`input`));
     options.forEach((option) => {
       option.addEventListener(`change`, () => {
