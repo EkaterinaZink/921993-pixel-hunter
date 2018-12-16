@@ -1,9 +1,8 @@
-const Points = {
-  RIGHT_ANSWER: 100,
-  LIFES: 50,
-  FAST: 50,
-  SLOW: 50,
-};
+const INITIAL_STATE = Object.freeze({
+  question: 0,
+  lifes: 3,
+  time: 30
+});
 
 const AnswerTime = {
   MIN: 10,
@@ -94,5 +93,5 @@ const getGameScreens = () => {
 };
 
 const gameList = getGameScreens();
-export {Points, AnswerTime, SCREEN_COUNT, gameList};
+export {INITIAL_STATE, AnswerTime, SCREEN_COUNT, gameList};
 

@@ -1,11 +1,8 @@
-import AbstractView from './abstractview';
+import {renderElement} from './utilits.js';
+import renderScreen from './render-screen.js';
+import rulesScreen from './rules-screen.js';
 
-export default class GreetingsView extends AbstractView {
-  constructor() {
-    super();
-  }
-  get template() {
-    return `  <section class="greeting central--blur">
+const markUp = `  <section class="greeting central--blur">
     <img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">
     <div class="greeting__asterisk asterisk"><span class="visually-hidden">Я просто красивая звёздочка</span>*</div>
     <div class="greeting__challenge">
@@ -25,18 +22,10 @@ export default class GreetingsView extends AbstractView {
       </svg>
     </button>
   </section>`;
-  }
-  nextButton() { }
 
-  bind(screen) {
-    screen
-      .querySelector(`.greeting__continue`)
-      .addEventListener(`click`, (e) => {
-        e.preventDefault();
-        this.nextButton();
-      });
+const greetingsScreen = renderElement(markUp);
+const nextScreenButton = greetingsScreen.querySelector(`.greeting__continue`);
 
-  }
-}
+nextScreenButton.addEventListener(`click`, () => renderScreen(rulesScreen));
 
-// переименовать render screen -> change screen ; createdom elment -> renderScreen
+export default greetingsScreen;

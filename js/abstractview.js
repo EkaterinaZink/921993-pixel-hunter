@@ -1,25 +1,28 @@
-import {renderScreen} from './utilits'; // переписать renderScreen
-
 export default class AbstractView {
-  constructor(state) {
-    this.state = state;
+  constructor() {
+    if (new.target === AbstractView) {
+      throw new Error(`Can't instantiate AbstractView`);
+    }
   }
 
   get template() {
     throw new Error(`Template is required`);
   }
 
-  get item() {
-    if (this._item) {
-      return this._item;
+  get element() {
+    if (this._element) {
+      return this._element;
     }
-    this._item = this.renderScreen();
-    this.bind(this._item);
-    return this._item;
+    this._element = this.render();
+    this.bind(this._element);
+    return this._element;
   }
 
   render() {
-    return renderScreen(this.template);
+    const markUp = this.template;
+    const wrapper = document.createElement(`div`);
+    wrapper.innerHTML = markUp.trim();
+    return wrapper;
   }
 
   bind() { }

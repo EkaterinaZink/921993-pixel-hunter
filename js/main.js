@@ -1,5 +1,5 @@
 
-import {renderScreen} from './utilits.js';
-import {introScreen} from './intro.js';
+import renderScreen from './render-screen.js';
+import introScreen from './intro-screen';
 
 renderScreen(introScreen);

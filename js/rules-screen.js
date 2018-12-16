@@ -1,8 +1,17 @@
-import {createDomElement} from './utilits.js';
-import {renderHeader, HEADER_2} from './header';
-import {startGame} from './game';
+import {renderElement} from './utilits.js';
+import startGame from './game-start.js';
 
-const markUp = `<section class="rules">
+const markUp = `<header class="header">
+<button class="back">
+  <span class="visually-hidden">Вернуться к началу</span>
+  <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
+    <use xlink:href="img/sprite.svg#arrow-left"></use>
+  </svg>
+  <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
+    <use xlink:href="img/sprite.svg#logo-small"></use>
+  </svg>
+</button>
+<section class="rules">
     <h2 class="rules__title">Правила</h2>
     <ul class="rules__description">
       <li>Угадай 10 раз для каждого изображения фото
@@ -19,21 +28,18 @@ const markUp = `<section class="rules">
     </form>
   </section>`;
 
-const screen = createDomElement(markUp, renderHeader(HEADER_2));
-const rulesInput = screen.querySelector(`.rules__input`);
-const rulesButton = screen.querySelector(`.rules__button`);
-const rulesForm = screen.querySelector(`.rules__form`);
+const rulesScreen = renderElement(markUp);
+const rulesInput = rulesScreen.querySelector(`.rules__input`);
+const rulesButton = rulesScreen.querySelector(`.rules__button`);
+const rulesForm = rulesScreen.querySelector(`.rules__form`);
 
-rulesInput.addEventListener(`input`, (e) => {
-  if (e.target.value !== ``) {
-    rulesButton.removeAttribute(`disabled`);
-  } else {
-    rulesButton.setAttribute(`disabled`, `disabled`);
-  }
+rulesForm.addEventListener(`input`, () => {
+  rulesButton.disabled = rulesInput.value.length > 0 ? false : true;
 });
 
 rulesForm.addEventListener(`submit`, (e) => {
   e.preventDefault();
   startGame();
 });
-export {screen as rulesScreen};
+
+export default rulesScreen;
