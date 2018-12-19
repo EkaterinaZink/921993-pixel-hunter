@@ -1,6 +1,10 @@
 import IntroScreen from './intro/intro-screen.js';
 import GreetingsScreen from './intro/greetings-screen.js';
 import RulesScreen from './intro/rules-screen.js';
+import GameScreen from './game-screen.js';
+import GameModel from './game-model.js';
+import Stats from './stats.js';
+
 
 const main = document.querySelector(`#main`);
 const changeView = (element) => {
@@ -22,5 +26,16 @@ export default class Router {
   static showRules() {
     const rules = new RulesScreen();
     changeView(rules.element);
+  }
+
+  static showGame(player) {
+    const gamePresenter = new GameScreen(new GameModel(player));
+    changeView(gamePresenter.element);
+    gamePresenter.startGame();
+  }
+
+  static showStats(isWinner, model) {
+    const statistics = new Stats(isWinner, model);
+    changeView(statistics.element);
   }
 }

@@ -1,37 +1,22 @@
-import {SCREEN_COUNT, AnswerTime} from "./game-data";
+import AbstractView from './view/abstractview.js';
+import Router from './router.js';
+import winScreen from './view/results-win.js';
+import failScreen from './view/results-fail.js';
 
-const answerState = {
-  UNKNOWN: `unknown`,
-  CORRECT: `correct`,
-  FAST: `fast`,
-  SLOW: `slow`,
-  WRONG: `wrong`
-};
+export default class Stats extends AbstractView {
 
-const countPoints = (answer) => {
-  if (!answer) {
-    return answerState.WRONG;
-  } else {
-    if (answer.time <= AnswerTime.MIN) {
-      return answerState.FAST;
-    } else if (answer.time >= AnswerTime.NORM) {
-      return answerState.SLOW;
-    } else {
-      return answerState.CORRECT;
-    }
+  constructor(win, model) {
+    super();
+    this.win = win;
+    this.model = model;
   }
-};
 
-const getArrayState = (answers) => {
-  let arrayState = [];
-  for (let i = 0; i < SCREEN_COUNT; i++) {
-    arrayState.push(
-        `<li class="stats__result stats__result--
-        ${countPoints(answers[i])}" />`
-    );
+  get template() {
+    return this.win ? winScreen(this.model.results, this.model.state.lifes, this.model.questionsList()) : failScreen(this.model.results, this.model.questionsList());
   }
-  return arrayState;
-};
 
-export const statsScreen = (answers) => `<ul class="stats">
-${getArrayState(answers).join(``)}</ul>`;
+  bind() {
+    const button = this.element.querySelector(`.back`);
+    button.addEventListener(`click`, () => Router.showGreetings);
+  }
+}

@@ -1,3 +1,16 @@
+export const Points = {
+  RIGHT_ANSWER: 100,
+  LIFES: 50,
+  FAST: 50,
+  SLOW: 50,
+};
+
+export const AnswerTime = {
+  MIN: 10,
+  NORM: 20,
+  MAX: 30
+};
+
 export const continueGame = (state) => state.lifes - 1 > 0;
 
 export const reduceLifes = (state) => {
@@ -10,14 +23,14 @@ export const reduceLifes = (state) => {
   return newGame;
 };
 
-export const changeQuestion = (game, question) => {
+export const changeQuestion = (state, question) => {
   if (question < 0) {
     throw new Error(`Question should not have negative value`);
   }
   if (typeof (question) !== `number`) {
     throw new Error(`Question should be a number`);
   }
-  const newGame = Object.assign({}, game, {question});
+  const newGame = Object.assign({}, state, {question});
   return newGame;
 };
 
@@ -53,3 +66,27 @@ export const resize = (container, image) => {
   const newDimensions = Object.assign({}, image);
   return newDimensions;
 };
+
+export const timer = (state) => {
+  let time = 0;
+  if (state.time > 0) {
+    time = state.time - 1;
+  }
+  const newState = Object.assign({}, state, {time});
+  return newState;
+};
+
+export const restartTimer = (state) => {
+  const newState = Object.assign({}, state, {
+    time: AnswerTime.MAX
+  });
+  return newState;
+};
+
+export const debug = {
+  enable: true,
+  styleRight: `style="border: 1px solid green;"`,
+  styleWrong: `style="border: 1px solid red;"`
+};
+
+

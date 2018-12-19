@@ -1,4 +1,4 @@
-const resultsTemplate = (results, answers) => {
+const resultsTemplate = (results, questionsList) => {
   return `<ul class="stats">
   ${results.map((result) => {
     if (result === `right`) {
@@ -7,10 +7,11 @@ const resultsTemplate = (results, answers) => {
       return `<li class="stats__result stats__result--wrong"></li>`;
     }
   }).join(``)}
-  ${new Array(answers - results.length)
+  ${new Array(questionsList - results.length)
       .fill(`<li class="stats__result stats__result--unknown"></li>`)
       .join(``)}
   </ul>`;
 };
 
 export default resultsTemplate;
+

@@ -1,4 +1,3 @@
-import startGame from '../game-start.js';
 import Router from '../router.js';
 import AbstractView from '../view/abstractview.js';
 
@@ -48,7 +47,7 @@ export default class RulesScreen extends AbstractView {
 
     rulesForm.addEventListener(`submit`, (e) => {
       e.preventDefault();
-      startGame();
+      Router.showGame(rulesInput.value);
     });
 
     nextScreenButton.addEventListener(`click`, () => Router.showGreetings());
