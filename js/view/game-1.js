@@ -17,12 +17,12 @@ export default class GameOneView extends AbstractView {
     <p class="game__task">${this.question.description}</p>
     <form class="game__content  game__content--wide">
       <div class="game__option">
-        <img src="${this.question.answer.image}" alt="Option 1" width="705" height="455">
-        <label class="game__answer  game__answer--photo" ${debug.enable && this.question.answer.value === `photo` ? debug.styleRight : ``}>
+        <img src="${this.question.answers[0].image}" alt="Option 1" width="705" height="455">
+        <label class="game__answer  game__answer--photo" ${debug.enable && this.question.answers[0].value === `photo` ? debug.styleRight : ``}>
           <input class="visually-hidden" name="question1" type="radio" value="photo">
           <span>Фото</span>
         </label>
-        <label class="game__answer  game__answer--paint" ${debug.enable && this.question.answer.value === `photo` ? debug.styleWrong : ``}>
+        <label class="game__answer  game__answer--paint" ${debug.enable && this.question.answers[0].value === `photo` ? debug.styleWrong : ``}>
           <input class="visually-hidden" name="question1" type="radio" value="paint">
           <span>Рисунок</span>
         </label>
@@ -40,7 +40,7 @@ export default class GameOneView extends AbstractView {
     options.forEach((option) => {
       option.addEventListener(`change`, () => {
         const selectedOption = option.value;
-        const rightAnswer = this.question.answer.value;
+        const rightAnswer = this.question.answers[0].value;
         const isRightAnswer = selectedOption === rightAnswer;
         this.handleAnswer(isRightAnswer);
       });

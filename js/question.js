@@ -7,7 +7,7 @@ export default class QuestionTemplate extends AbstractView {
   constructor(question, results, questionsList) {
     super();
     this.question = question;
-    this.result = results;
+    this.results = results;
     this.questionsList = questionsList;
     this.view = null;
   }
