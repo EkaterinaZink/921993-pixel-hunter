@@ -85,8 +85,29 @@ export const restartTimer = (state) => {
 
 export const debug = {
   enable: true,
-  styleRight: `style="border: 1px solid green;"`,
-  styleWrong: `style="border: 1px solid red;"`
+  styleRight: `style="border: 1px solid green;"`
 };
 
+export const ServerGameType = {
+  ONE_PICTURE: `tinder-like`,
+  TWO_PICTURE: `two-of-two`,
+  THREE_PICTURE: `one-of-three`
+};
 
+export const ServerImageType = {
+  PHOTO: `photo`,
+  PAINT: `paint`
+};
+
+export const ImageType = {
+  PHOTO: `photo`,
+  PAINT: `paint`
+};
+
+export const checkResponseStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    throw new Error(`Статус: ${response.status}`);
+  }
+};

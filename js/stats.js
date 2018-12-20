@@ -12,7 +12,7 @@ export default class Stats extends AbstractView {
   }
 
   get template() {
-    return this.win ? winScreen(this.model.results, this.model.state.lifes, this.model.questionsList()) : failScreen(this.model.results, this.model.questionsList());
+    return this.win ? winScreen(this.model.results, this.model.state.lifes, this.model.getQuestions()) : failScreen(this.model.results, this.model.getQuestions());
   }
 
   bind() {

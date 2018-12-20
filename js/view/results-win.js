@@ -16,7 +16,7 @@ const winScreen = (results, lifes, answers) => {
     </button>
     </header>
     <section class="result">
-    <h2 class="result__title">Победа!></h2>
+    <h2 class="result__title">Победа!</h2>
     <table class="result__table">
       <tr>
         <td class="result__number">1.</td>

@@ -17,8 +17,9 @@ const getRightAnswer = (answers) => {
 };
 
 export const countPoints = (answers, lifes) => {
+  const rightAnswersArray = answers.filter((answer) => answer === `right`);
   const pointsPerLife = lifes * Points.LIFES;
-  const pointsPerRightAnswer = answers.length * Points.RIGHT_ANSWER;
+  const pointsPerRightAnswer = rightAnswersArray.length * Points.RIGHT_ANSWER;
   let total = 0;
 
   if ((lifes < 0) || (lifes > 3) || (typeof lifes !== `number`)) {
@@ -27,7 +28,7 @@ export const countPoints = (answers, lifes) => {
     throw new Error(`answers should be an array`);
   } else {
 
-    answers.forEach((answer) => {
+    rightAnswersArray.forEach((answer) => {
       if (answer <= AnswerTime.MIN) {
         total += Points.FAST;
       }
@@ -46,6 +47,8 @@ export const countPoints = (answers, lifes) => {
     );
 
     return {
+      pointsPerRightAnswer,
+      pointsPerLife,
       right: rightAnswers.length,
       fast: fastAnswers.length,
       slow: slowAnswers.length,
