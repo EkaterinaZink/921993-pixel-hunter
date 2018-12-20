@@ -31,8 +31,8 @@ export default class HeaderTemplate extends AbstractView {
   }
 
   updateTime(seconds) {
-    const timeDisplay = this.element.querySelector(`.game__timer`);
-    timeDisplay.timeContent = seconds;
+    const timeDisplay = this._element.querySelector(`.game__timer`);
+    timeDisplay.textContent = seconds;
   }
 
   onButtonClick() { }

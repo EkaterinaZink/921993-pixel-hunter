@@ -107,10 +107,10 @@ export const gameQuestions = [
   {
     type: `1-img`,
     description: `Угадай, фото или рисунок?`,
-    answer: {
+    answers: [{
       image: imagesList.photos[randomIndex(imagesList.photos)],
       value: `photo`
-    }
+    }]
   },
   {
     type: `3-img`,
@@ -148,17 +148,17 @@ export const gameQuestions = [
   {
     type: `1-img`,
     description: `Угадай, фото или рисунок?`,
-    answer: {
+    answers: [{
       image: imagesList.photos[randomIndex(imagesList.photos)],
       value: `photo`
-    }
+    }]
   },
   {
     type: `1-img`,
     description: `Угадай, фото или рисунок?`,
-    answer: {
+    answers: [{
       image: imagesList.photos[randomIndex(imagesList.photos)],
       value: `photo`
-    }
+    }]
   }
 ];

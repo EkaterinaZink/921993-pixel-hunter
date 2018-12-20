@@ -1,7 +1,7 @@
 import AbstractView from './view/abstractview.js';
 import GameOneView from './view/game-1.js';
-import GameTwoView from './view/game-1.js';
-import GameThreeView from './view/game-1.js';
+import GameTwoView from './view/game-2.js';
+import GameThreeView from './view/game-3.js';
 
 export default class QuestionTemplate extends AbstractView {
   constructor(question, results, questionsList) {
@@ -30,11 +30,11 @@ export default class QuestionTemplate extends AbstractView {
     }
 
     this.view.handleAnswer = this.handleAnswer;
-
+    /*
     if (this._element) {
       return this._element;
     }
-
+*/
     this._element = this.view.element;
     return this._element;
   }

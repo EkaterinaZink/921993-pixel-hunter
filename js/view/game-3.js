@@ -31,7 +31,7 @@ export default class GameThreeView extends AbstractView {
     const options = Array.from(this.element.querySelectorAll(`.game__option img`));
     options.forEach((option, i) => {
       option.addEventListener(`click`, () => {
-        let isRightAnswer = this.question.answer[i].value === this.question.soughtFor;
+        let isRightAnswer = this.question.answers[i].value === this.question.soughtFor;
         this.handleAnswer(isRightAnswer);
       });
     });

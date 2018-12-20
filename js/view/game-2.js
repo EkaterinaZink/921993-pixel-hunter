@@ -23,7 +23,7 @@ export default class GameTwoView extends AbstractView {
           <input class="visually-hidden" name="question${i + 1}" type="radio" value="photo">
           <span>Фото</span>
         </label>
-        <label class="game__answer  game__answer--paint" ${debug.enable && this.question.answer[1].value === `photo` ? debug.styleWrong : ``}>
+        <label class="game__answer  game__answer--paint" ${debug.enable && this.question.answers[1].value === `photo` ? debug.styleWrong : ``}>
           <input class="visually-hidden" name="question${i + 1}" type="radio" value="paint">
           <span>Рисунок</span>
         </label>

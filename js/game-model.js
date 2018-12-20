@@ -36,6 +36,10 @@ export default class GameModel {
     return getQuestion(this._state);
   }
 
+  getQuestionsNumber() {
+    return this.data.length;
+  }
+
   restartTimer() {
     this._state = restartTimer(this._state);
   }

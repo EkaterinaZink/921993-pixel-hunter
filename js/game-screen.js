@@ -77,7 +77,10 @@ export default class GameScreen {
   }
 
   changeView(view) {
-    this.root.replaceChild(view.element, this.question.element);
+    // this.root.replaceChild(view.element, this.question.element);
+    this.root.innerHTML = ``;
     this.question = view;
+    this.root.appendChild(this.header.element);
+    this.root.appendChild(this.question.element);
   }
 }
