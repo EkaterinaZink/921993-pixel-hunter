@@ -4,7 +4,8 @@ import RulesScreen from './screens/intro/rules-screen.js';
 import GameScreen from './game-screen.js';
 import GameModel from './game-model.js';
 import Stats from './stats.js';
-
+import QuestionsService from './questions-service.js';
+import ErrorScreen from "./screens/modal/error-screen.js";
 
 const main = document.querySelector(`#main`);
 const changeView = (element) => {
@@ -12,10 +13,20 @@ const changeView = (element) => {
   main.appendChild(element);
 };
 
+let questData;
+
 export default class Router {
   static showIntro() {
     const intro = new IntroScreen();
     changeView(intro.element);
+    const questionService = new QuestionsService();
+    questionService
+    .load()
+    .then((data) => {
+      questData = data;
+      Router.showGreetings();
+    })
+    .catch(Router.showError);
   }
 
   static showGreetings() {
@@ -29,7 +40,7 @@ export default class Router {
   }
 
   static showGame(player) {
-    const gamePresenter = new GameScreen(new GameModel(player));
+    const gamePresenter = new GameScreen(new GameModel(player), questData);
     changeView(gamePresenter.element);
     gamePresenter.startGame();
   }
@@ -38,4 +49,11 @@ export default class Router {
     const statistics = new Stats(isWinner, model);
     changeView(statistics.element);
   }
+
+  static showError(err) {
+    const message = err.message;
+    const errorScreen = new ErrorScreen(message);
+    changeView(errorScreen.element);
+  }
+
 }
