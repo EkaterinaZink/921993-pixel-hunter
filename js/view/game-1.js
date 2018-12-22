@@ -1,6 +1,7 @@
 import AbstractView from './abstractview.js';
 import resultsTemplate from '../results-chart.js';
 import {debug} from '../utilits.js';
+// import GameView from './game-view.js';
 
 export default class GameOneView extends AbstractView {
   constructor(question, results, questionsList) {

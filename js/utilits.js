@@ -11,6 +11,8 @@ export const AnswerTime = {
   MAX: 30
 };
 
+const bodyElement = document.querySelector(`body`);
+
 export const continueGame = (state) => state.lifes - 1 > 0;
 
 export const reduceLifes = (state) => {
@@ -42,29 +44,23 @@ export const renderElement = (template = ``, tagName = `div`) => {
 
 export const resize = (container, image) => {
   const initImgRatio = image.width / image.height;
-  const calculatedHeight = container.width / initImgRatio;
-  const calculatedWidth = container.height * initImgRatio;
-  const imageIsWider = image.width > container.width;
-  const imageVsContainerWidth = image.width - container.width;
-  const imageVsContainerHeight = image.height - container.height;
-  const imageIsHigher = image.height > container.height;
-  const containerIsHigher = container.height > image.height;
-
-  if (imageIsWider && (imageVsContainerWidth) > (imageVsContainerHeight)) {
-    image.width = container.width;
-    image.height = calculatedHeight;
-  } else if (imageIsWider && (imageVsContainerWidth) < (imageVsContainerHeight)) {
-    image.height = container.height;
-    image.width = calculatedWidth;
-  } else if (imageIsHigher) {
-    image.height = container.height;
-    image.width = calculatedWidth;
-  } else if (containerIsHigher) {
-    image.width = container.width;
-    image.height = calculatedHeight;
+  const resizeImage = {};
+  const containerRatio = container.width / container.height;
+  if (initImgRatio > containerRatio) {
+    resizeImage.height = container.width / initImgRatio;
+    resizeImage.width = container.width;
+  } else {
+    resizeImage.height = container.height;
+    resizeImage.width = initImgRatio * container.height;
   }
-  const newDimensions = Object.assign({}, image);
-  return newDimensions;
+  return resizeImage;
+};
+
+export const showPopup = (element) => {
+  bodyElement.appendChild(element);
+};
+export const hidePopup = (element) => {
+  bodyElement.removeChild(element);
 };
 
 export const timer = (state) => {
