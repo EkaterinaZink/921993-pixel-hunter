@@ -1,5 +1,5 @@
-import Router from '../router.js';
-import AbstractView from '../view/abstractview.js';
+import Router from '../../router.js';
+import AbstractView from '../../view/abstractview.js';
 
 export default class GreetingsScreen extends AbstractView {
   constructor() {

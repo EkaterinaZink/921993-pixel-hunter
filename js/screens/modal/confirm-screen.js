@@ -1,4 +1,4 @@
-import ConfirmView from "./confirm-view.js";
+import ConfirmView from "../../view/confirm-view.js";
 
 export default class ConfirmScreen {
   constructor() {

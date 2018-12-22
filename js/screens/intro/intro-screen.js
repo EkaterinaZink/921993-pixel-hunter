@@ -1,5 +1,5 @@
-import Router from '../router';
-import AbstractView from '../view/abstractview';
+import Router from '../../router.js';
+import AbstractView from '../../view/abstractview.js';
 
 export default class IntroScreen extends AbstractView {
   constructor() {
