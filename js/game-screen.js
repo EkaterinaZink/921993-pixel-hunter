@@ -36,6 +36,7 @@ export default class GameScreen {
   }
 
   answer(resposta) {
+    console.log(resposta);
     this.stopTimer();
 
     if (resposta) {

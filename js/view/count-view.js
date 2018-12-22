@@ -21,7 +21,7 @@ export default class CountPointsView extends AbstractView {
     </section>`;
   }
   _getStatsList(result) {
-    return new StatsView(result.answers).template;
+    return new StatsView(result.name._results).template;
   }
 
   _getResultPoints(result) {

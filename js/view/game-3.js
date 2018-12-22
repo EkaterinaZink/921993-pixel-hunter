@@ -1,6 +1,6 @@
 import AbstractView from './abstractview.js';
 import resultsTemplate from '../results-chart.js';
-import {debug} from '../utilits.js';
+import {debug, getCountChecked} from '../utilits.js';
 
 export default class GameThreeView extends AbstractView {
   constructor(question, results, questionsList) {
@@ -27,13 +27,21 @@ export default class GameThreeView extends AbstractView {
 
   handleAnswer() { }
 
-  bind() {
-    const options = Array.from(this.element.querySelectorAll(`.game__option img`));
-    options.forEach((option, i) => {
+  bind(element) {
+    super.bind(element);
+    const optionsList = element.querySelectorAll(`.game__option`);
+    optionsList.forEach((option) => {
       option.addEventListener(`click`, () => {
-        let isRightAnswer = this.question.answers[i].value === this.question.soughtFor;
-        this.handleAnswer(isRightAnswer);
+        this.game.pictures.forEach((pictures) => {
+          if (+option.dataset.id === pictures.number) {
+            const isRight = pictures.type === this.game.rightType;
+            this.onNext(isRight);
+          }
+        });
       });
     });
+    this.header.bind(element);
+    this.header.onBack = () => this.onBack();
+
   }
 }

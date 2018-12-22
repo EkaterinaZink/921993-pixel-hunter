@@ -1,6 +1,6 @@
 import AbstractView from './abstractview.js';
 import resultsTemplate from '../results-chart.js';
-import {debug} from '../utilits.js';
+import {debug, getCountChecked} from '../utilits.js';
 
 export default class GameTwoView extends AbstractView {
   constructor(question, results, questionsList) {
@@ -36,34 +36,25 @@ export default class GameTwoView extends AbstractView {
 
   handleAnswer() { }
 
-  bind() {
-    const formElement = this.element.querySelector(`.game__content`);
-    const questionsWrappers = Array.from(formElement.querySelectorAll(`.game__option`));
-    const imagesToAnswer = questionsWrappers.length;
-    let answersRightPartial = 0;
-    let isRightAnswer;
+  bind(element) {
+    super.bind(element);
+    const optionList = element.querySelectorAll(`.game__option`);
+    const answersList = element.querySelectorAll(`input`);
+    const savedAnswers = new Array(optionList.length);
 
-    questionsWrappers.forEach((wrapper, i) => {
-      const options = wrapper.querySelectorAll(`input[name="question${i + 1}"]`);
-      options.forEach((option) => {
-        option.addEventListener(`change`, () => {
-          if (option.value === this.question.answers[i].value) {
-            answersRightPartial++;
-          } else {
-            answersRightPartial--;
-          }
-          isRightAnswer = answersRightPartial === imagesToAnswer;
-        });
+    answersList.forEach((input) => {
+      input.addEventListener(`change`, () => {
+        const foundPicture = this.game.pictures.find(
+            (pictures) => +input.dataset.id === pictures.number
+        );
+        savedAnswers[input.dataset.id - 1] = input.value === foundPicture.type;
+        if (getCountChecked(answersList) >= optionList.length) {
+          this.onNext(!savedAnswers.includes(false));
+        }
       });
     });
+    this.header.bind(element);
+    this.header.onBack = () => this.onBack();
 
-    const formElementChangeHandler = () => {
-      const allOptions = Array.from(formElement.querySelectorAll(`input[type="radio"]`));
-      const answers = allOptions.filter((input) => input.checked);
-      if (answers.length === imagesToAnswer) {
-        this.handleAnswer(isRightAnswer);
-      }
-    };
-    formElement.addEventListener(`change`, formElementChangeHandler);
   }
 }

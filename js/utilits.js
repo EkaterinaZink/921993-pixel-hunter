@@ -56,6 +56,15 @@ export const resize = (container, image) => {
   return resizeImage;
 };
 
+export const getCountChecked = (inputList) => {
+  return Array.from(inputList).reduce((prev, current) => {
+    if (prev.checked !== undefined) {
+      prev = prev.checked ? 1 : 0;
+    }
+    return prev + (current.checked ? 1 : 0);
+  });
+};
+
 export const showPopup = (element) => {
   bodyElement.appendChild(element);
 };

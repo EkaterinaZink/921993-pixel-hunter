@@ -1,6 +1,6 @@
 import AbstractView from './abstractview.js';
 import resultsTemplate from '../results-chart.js';
-import {debug} from '../utilits.js';
+import {debug, getCountChecked} from '../utilits.js';
 
 // import GameView from './game-view.js';
 
@@ -36,16 +36,24 @@ export default class GameOneView extends AbstractView {
 
   handleAnswer() { }
 
-  bind() {
-    const formElement = this.element.querySelector(`.game__content`);
-    const options = Array.from(formElement.querySelectorAll(`input`));
-    options.forEach((option) => {
-      option.addEventListener(`change`, () => {
-        const selectedOption = option.value;
-        const rightAnswer = this.question.answers[0].value;
-        const isRightAnswer = selectedOption === rightAnswer;
-        this.handleAnswer(isRightAnswer);
+
+  bind(element) {
+    super.bind(element);
+    const optionList = element.querySelectorAll(`.game__option`);
+    const answersList = element.querySelectorAll(`input`);
+    let savedAnswers = new Array(optionList.length);
+    answersList.forEach((input) => {
+      input.addEventListener(`change`, () => {
+        const foundPicture = this.game.pictures.find(
+            (pictures) => +input.dataset.id === pictures.number
+        );
+        savedAnswers[input.dataset.id - 1] = input.value === foundPicture.type;
+        if (getCountChecked(answersList) >= optionList.length) {
+          this.onNext(!savedAnswers.includes(false));
+        }
       });
     });
+    this.header.bind(element);
+    this.header.onBack = () => this.onBack();
   }
 }

@@ -42,6 +42,7 @@ export default class Router {
   }
 
   static showStats(stats, player) {
+    console.log(player);
     const resultService = new ResultService();
     const statsLoading = new ResultLoadingView();
     changeView(statsLoading.element);
@@ -56,6 +57,7 @@ export default class Router {
   }
 
   static showError(err) {
+    console.log(err);
     const message = err.message;
     const errorScreen = new ErrorScreen(message);
     changeView(errorScreen.element);

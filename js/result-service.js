@@ -3,8 +3,8 @@ import {checkResponseStatus} from "./utilits.js";
 
 export default class ResultService {
   constructor() {}
-  loadResults(name = DEFAULT_NAME) {
-    return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`)
+  loadResults() {
+    return fetch(`${SERVER_URL}/stats/${APP_ID}`)
       .then((response) => {
         return checkResponseStatus(response);
       })
@@ -20,7 +20,7 @@ export default class ResultService {
       },
       method: `POST`
     };
-    return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, requestSettings).then(
+    return fetch(`${SERVER_URL}/stats/${APP_ID}`, requestSettings).then(
         (response) => checkResponseStatus(response)
     )
     .catch((err) => console.error(err));
