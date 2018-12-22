@@ -3,9 +3,12 @@ import GreetingsScreen from './screens/intro/greetings-screen.js';
 import RulesScreen from './screens/intro/rules-screen.js';
 import GameScreen from './game-screen.js';
 import GameModel from './game-model.js';
-import Stats from './stats.js';
+// import Stats from './stats.js';
 // import QuestionsService from './questions-service.js';
-import ErrorScreen from "./screens/modal/error-screen.js";
+import ErrorScreen from './screens/modal/error-screen.js';
+import ResultService from './result-service.js';
+import ResultScreen from './view/result-screen.js';
+import ResultLoadingView from './view/results-view.js';
 
 const main = document.querySelector(`#main`);
 const changeView = (element) => {
@@ -38,13 +41,21 @@ export default class Router {
     gamePresenter.startGame();
   }
 
-  static showStats(isWinner, model) {
-    const statistics = new Stats(isWinner, model);
-    changeView(statistics.element);
+  static showStats(stats, player) {
+    const resultService = new ResultService();
+    const statsLoading = new ResultLoadingView();
+    changeView(statsLoading.element);
+    resultService
+      .saveResults(stats, player)
+      .then(() => resultService.loadResults(player))
+      .then((data) => {
+        const statistics = new ResultScreen(data, player);
+        changeView(statistics.element);
+      })
+      .catch(Router.showError);
   }
 
   static showError(err) {
-    console.log(err);
     const message = err.message;
     const errorScreen = new ErrorScreen(message);
     changeView(errorScreen.element);
