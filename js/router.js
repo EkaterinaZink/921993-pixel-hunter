@@ -4,7 +4,7 @@ import RulesScreen from './screens/intro/rules-screen.js';
 import GameScreen from './game-screen.js';
 import GameModel from './game-model.js';
 import Stats from './stats.js';
-import QuestionsService from './questions-service.js';
+// import QuestionsService from './questions-service.js';
 import ErrorScreen from "./screens/modal/error-screen.js";
 
 const main = document.querySelector(`#main`);
@@ -16,17 +16,10 @@ const changeView = (element) => {
 let questData;
 
 export default class Router {
-  static showIntro() {
+  static showIntro(data) {
     const intro = new IntroScreen();
+    questData = data;
     changeView(intro.element);
-    const questionService = new QuestionsService();
-    questionService
-    .load()
-    .then((data) => {
-      questData = data;
-      Router.showGreetings();
-    })
-    .catch(Router.showError);
   }
 
   static showGreetings() {
@@ -51,6 +44,7 @@ export default class Router {
   }
 
   static showError(err) {
+    console.log(err);
     const message = err.message;
     const errorScreen = new ErrorScreen(message);
     changeView(errorScreen.element);
