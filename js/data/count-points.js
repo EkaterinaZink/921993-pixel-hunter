@@ -1,11 +1,11 @@
-const Points = {
+export const Points = {
   RIGHT_ANSWER: 100,
   LIFES: 50,
   FAST: 50,
   SLOW: 50,
 };
 
-const AnswerTime = {
+export const AnswerTime = {
   MIN: 10,
   NORM: 20,
   MAX: 30
