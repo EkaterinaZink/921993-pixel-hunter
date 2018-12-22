@@ -7,7 +7,7 @@ const renameOption = (item, oldOption, newOption) => {
 
 export const adaptServerData = (data) => {
   return data.map((quest) => {
-    console.log(quest);
+    // console.log(quest);
     renameOption(quest, `question`, `description`);
     renameOption(quest, `answers`, `pictures`);
     switch (quest.type) {

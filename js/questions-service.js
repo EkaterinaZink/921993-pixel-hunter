@@ -5,8 +5,7 @@ import {checkResponseStatus} from "./utilits.js";
 export default class QuestionsService {
   constructor() {}
   load() {
-    return window
-      .fetch(`${SERVER_URL}/questions`)
+    return fetch(`${SERVER_URL}/questions`)
       .then((response) => checkResponseStatus(response))
       .then((response) => response.json())
       .then((data) => {

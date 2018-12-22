@@ -8,7 +8,8 @@ export default class ResultService {
       .then((response) => {
         return checkResponseStatus(response);
       })
-      .then((response) => response.json());
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
   }
   saveResults(data, name = DEFAULT_NAME) {
     data = Object.assign({name}, data);
@@ -21,6 +22,7 @@ export default class ResultService {
     };
     return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`, requestSettings).then(
         (response) => checkResponseStatus(response)
-    );
+    )
+    .catch((err) => console.error(err));
   }
 }

@@ -11,48 +11,60 @@ const AnswerTime = {
   MAX: 30
 };
 
+const MIN_ANSWER = 7;
 
 const getRightAnswer = (answers) => {
   return answers.filter((answer) => answer.result === 1);
 };
 
+const calcAnswerPoints = (time) => {
+  let point = Points.RIGHT_ANSWER;
+  if (time <= AnswerTime.MIN) {
+    point += Points.FAST;
+  } else if (time >= AnswerTime.NORM) {
+    point -= Points.SLOW;
+  }
+  return point;
+};
+
+const pointsPerLife = (lifes) => lifes * Points.LIFES;
+
 export const countPoints = (answers, lifes) => {
-  const rightAnswersArray = answers.filter((answer) => answer === `right`);
-  const pointsPerLife = lifes * Points.LIFES;
-  const pointsPerRightAnswer = rightAnswersArray.length * Points.RIGHT_ANSWER;
-  let total = 0;
+  if (lifes < 0) {
+    lifes = 0;
+  }
 
   if ((lifes < 0) || (lifes > 3) || (typeof lifes !== `number`)) {
     return -1;
   } else if (!Array.isArray(answers)) {
     throw new Error(`answers should be an array`);
-  } else {
-
-    rightAnswersArray.forEach((answer) => {
-      if (answer <= AnswerTime.MIN) {
-        total += Points.FAST;
-      }
-      if (answer >= AnswerTime.NORM) {
-        total -= Points.SLOW;
-      }
-    });
-    total += pointsPerLife + pointsPerRightAnswer;
-
-    let rightAnswers = getRightAnswer(answers);
-    const fastAnswers = rightAnswers.filter(
-        (answer) => answer.time <= AnswerTime.MIN
-    );
-    const slowAnswers = rightAnswers.filter(
-        (answer) => answer.time >= AnswerTime.NORM
-    );
-
-    return {
-      pointsPerRightAnswer,
-      pointsPerLife,
-      right: rightAnswers.length,
-      fast: fastAnswers.length,
-      slow: slowAnswers.length,
-      total
-    };
   }
+
+  const rightAnswersArray = getRightAnswer(answers);
+
+  let fastAnswersCount = 0;
+  let slowAnswersCount = 0;
+  let total = 0;
+
+  if (rightAnswersArray.length >= MIN_ANSWER) {
+    for (let answer of rightAnswersArray) {
+      total += calcAnswerPoints(answer.time);
+      if (answer.time <= AnswerTime.MIN) {
+        fastAnswersCount++;
+      } else if (answer.time >= AnswerTime.NORM) {
+        slowAnswersCount++;
+      }
+    }
+    total += pointsPerLife(lifes);
+  } else {
+    total = -1;
+  }
+
+  return {
+    right: rightAnswersArray.length,
+    fast: fastAnswersCount,
+    slow: slowAnswersCount,
+    total
+  };
 };
+

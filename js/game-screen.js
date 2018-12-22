@@ -80,10 +80,8 @@ export default class GameScreen {
     // this.root.replaceChild(view.element, this.question.element);
     this.root.innerHTML = ``;
     this.question = view;
-    this.question.resizeImage();
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.question.element);
-    this.bind();
   }
   exit() {
     Router.showStats(this.model.state, this.model.player);
